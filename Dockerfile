@@ -1,9 +1,9 @@
 # syntax = docker/dockerfile:1.3-labs
 ARG FFMPEG_VERSION="5.1.2"
 #
-FROM Allan-Nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
-FROM Allan-Nava/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
-FROM ghcr.io/Allan-Nava/ffmpeg-windows:${FFMPEG_VERSION} AS ffmpeg-image-windows
+FROM allan-nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
+FROM allan-nava/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
+FROM ghcr.io/allan-nava/ffmpeg-windows:${FFMPEG_VERSION} AS ffmpeg-image-windows
 #
 #
 # build env image
@@ -80,7 +80,7 @@ FROM ffmpeg-build-env AS ffmpeg-linux-build-base
 ENV TARGET_OS="Linux"
 
 # Copy ffmpeg-library image
-COPY --from=ghcr.io/Allan-Nava/ffmpeg-library-build:linux / /
+COPY --from=ghcr.io/allan-nava/ffmpeg-library-build:linux / /
 
 
 #

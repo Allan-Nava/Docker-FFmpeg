@@ -3,7 +3,7 @@
 ARG TARGET_OS="linux"
 ARG CUDA_SDK_VERSION=11.5.0
 
-FROM ghcr.io/Allan-Nava/ffmpeg-library-build:${TARGET_OS} AS ffmpeg-library-build
+FROM ghcr.io/allan-nava/ffmpeg-library-build:${TARGET_OS} AS ffmpeg-library-build
 
 FROM nvidia/cuda:${CUDA_SDK_VERSION}-devel-ubuntu20.04 AS ffmpeg-build
 

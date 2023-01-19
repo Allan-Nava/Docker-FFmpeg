@@ -20,7 +20,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/') == false && (github.event_name == 'push' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'))
     strategy:
       matrix:
-        ffmpeg: ["4.4.2", "5.0.1"]
+        ffmpeg: ["5.0.1"]
         flavor: [linux, qsv-linux, windows]
     steps:
       - name: Checkout
@@ -40,33 +40,33 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: Allan-Nava
+          username: allan-nava
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GHCR
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: Allan-Nava
+          username: allan-nava
           password: ${{ github.token }}
 
       - name: Set build target (linux)
         if: matrix.flavor == 'linux'
         run: |
           echo "target=ffmpeg" >> $GITHUB_ENV
-          echo "image_name=Allan-Nava/ffmpeg" >> $GITHUB_ENV
+          echo "image_name=allan-nava/ffmpeg" >> $GITHUB_ENV
           echo "image_tag=${{ matrix.ffmpeg }}" >> $GITHUB_ENV
       - name: Set build target (qsv-linux)
         if: matrix.flavor == 'qsv-linux'
         run: |
           echo "target=ffmpeg-qsv" >> $GITHUB_ENV
-          echo "image_name=Allan-Nava/ffmpeg" >> $GITHUB_ENV
+          echo "image_name=allan-nava/ffmpeg" >> $GITHUB_ENV
           echo "image_tag=${{ matrix.ffmpeg }}-qsv" >> $GITHUB_ENV
       - name: Set build target (windows)
         if: matrix.flavor == 'windows'
         run: |
           echo "target=ffmpeg-windows" >> $GITHUB_ENV
-          echo "image_name=ghcr.io/Allan-Nava/ffmpeg-windows" >> $GITHUB_ENV
+          echo "image_name=ghcr.io/allan-nava/ffmpeg-windows" >> $GITHUB_ENV
           echo "image_tag=${{ matrix.ffmpeg }}" >> $GITHUB_ENV
       - name: Build and push - ffmpeg
         uses: docker/build-push-action@v2

@@ -30,6 +30,7 @@ jobs:
           key: ${{ runner.os }}-${{ github.workflow }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-${{ github.workflow }}-
+      #
       - name: Login to GHCR
         uses: docker/login-action@v1
         with:
@@ -41,6 +42,7 @@ jobs:
         if: matrix.os == 'windows'
         run: |
           echo "target_os=Windows" >> $GITHUB_ENV
+      #
       - name: Build ffmpeg-build-base
         uses: docker/build-push-action@v2
         with:
@@ -55,8 +57,9 @@ jobs:
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-
+      #
       - name: Move cache # https://github.com/docker/build-push-action/issues/252
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+#

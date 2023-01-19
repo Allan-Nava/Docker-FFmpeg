@@ -1,4 +1,5 @@
 # Docker-FFmpeg
+[![ffmpeg](https://github.com/Allan-Nava/Docker-FFmpeg/actions/workflows/ffmpeg.yml/badge.svg)](https://github.com/Allan-Nava/Docker-FFmpeg/actions/workflows/ffmpeg.yml)
 
 FFmpeg build in docker
 

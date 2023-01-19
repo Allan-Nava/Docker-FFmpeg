@@ -1,5 +1,5 @@
 name: ffmpeg-library-build
-
+#
 on:
   push:
     paths:
@@ -8,7 +8,7 @@ on:
       - 'scripts/build-library.sh'
       - '.github/workflows/ffmpeg-library-build.yml'
     branches: [main]
-
+#
 jobs:
   build:
     runs-on: ubuntu-latest

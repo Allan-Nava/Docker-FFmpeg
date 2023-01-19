@@ -47,7 +47,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           tags: |
-            ghcr.io/${{ github.actor }}/ffmpeg-library-build:${{ matrix.os }}
+            ghcr.io/allan-nava/ffmpeg-library-build:${{ matrix.os }}
           build-args: |
             TARGET_OS=${{ env.target_os }}
           target: ffmpeg-library

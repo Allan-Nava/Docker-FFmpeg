@@ -25,12 +25,19 @@ jobs:
           key: ${{ runner.os }}-${{ github.workflow }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-${{ github.workflow }}-
-      - name: Login to DockerHub
+      #- name: Login to DockerHub
+      #  uses: docker/login-action@v1
+      #  with:
+      #    registry: ${{ env.REGISTRY }}
+      #    username: ${{ github.actor }}
+      #    password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to GHCR
         uses: docker/login-action@v1
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: allan-nava
+          password: ${{ github.token }}
 
       - name: Build vainfo
         uses: docker/build-push-action@v2

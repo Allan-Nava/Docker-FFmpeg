@@ -1,11 +1,11 @@
 #!/bin/bash
-#
+
 source ./base.sh
-#
+
 #
 # Build Tools
 #
-#
+
 # Download Cmake
 CMAKE_VERSION=3.23.1
 download_and_unpack_file "https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-${HOST_OS}-${HOST_ARCH}.tar.gz"

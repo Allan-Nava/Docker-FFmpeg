@@ -34,7 +34,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: Allan-Nava
+          username: ${{ github.actor }}
           password: ${{ github.token }}
 
       - name: Set build target (windows)
@@ -47,7 +47,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           tags: |
-            ghcr.io/Allan-Nava/ffmpeg-library-build:${{ matrix.os }}
+            ghcr.io/${{ github.actor }}/ffmpeg-library-build:${{ matrix.os }}
           build-args: |
             TARGET_OS=${{ env.target_os }}
           target: ffmpeg-library

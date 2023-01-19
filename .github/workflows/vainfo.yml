@@ -28,7 +28,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: Allan-Nava
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build vainfo
@@ -37,7 +38,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           tags: |
-            Allan-Nava/vainfo
+            ${{ github.actor }}/vainfo
           platforms: linux/amd64
           target: vainfo
           push: true

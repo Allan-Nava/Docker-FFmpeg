@@ -1,0 +1,62 @@
+name: ffmpeg-library-build
+
+on:
+  push:
+    paths:
+      - 'Dockerfile'
+      - 'scripts/base.sh'
+      - 'scripts/build-library.sh'
+      - '.github/workflows/ffmpeg-library-build.yml'
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/') == false
+    strategy:
+      matrix:
+        os: [linux, windows]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-${{ github.workflow }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-${{ github.workflow }}-
+      - name: Login to GHCR
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: Allan-Nava
+          password: ${{ github.token }}
+
+      - name: Set build target (windows)
+        if: matrix.os == 'windows'
+        run: |
+          echo "target_os=Windows" >> $GITHUB_ENV
+      - name: Build ffmpeg-build-base
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          tags: |
+            ghcr.io/Allan-Nava/ffmpeg-library-build:${{ matrix.os }}
+          build-args: |
+            TARGET_OS=${{ env.target_os }}
+          target: ffmpeg-library
+          platforms: linux/amd64
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+      - name: Move cache # https://github.com/docker/build-push-action/issues/252
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache

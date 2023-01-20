@@ -31,6 +31,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ github.workflow }}-
       #
+      - name: Save Cache Docker layers
+        id: cache-docker-layers-save
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            /tmp/.buildx-cache
+          key: ${{ runner.os }}-${{ github.workflow }}-${{ matrix.ffmpeg }}-${{ matrix.hwaccel }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-${{ github.workflow }}-${{ matrix.ffmpeg }}-${{ matrix.hwaccel }}-
+      #
       - name: Login to GHCR
         uses: docker/login-action@v1
         with:

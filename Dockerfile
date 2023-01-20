@@ -80,8 +80,8 @@ FROM ffmpeg-build-env AS ffmpeg-linux-build-base
 ENV TARGET_OS="Linux"
 
 # Copy ffmpeg-library image
-COPY --from=ghcr.io/allan-nava/ffmpeg-library-build:linux / /
-
+#COPY --from=ghcr.io/allan-nava/ffmpeg-library-build:linux / /
+COPY --from=ffmpeg-library-build / /
 
 #
 # ffmpeg linux binary build image

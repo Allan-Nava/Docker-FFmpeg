@@ -143,8 +143,8 @@ do_configure () {
 do_make_and_make_install () {
   local extra_make_options="${1:-""}"
   local extra_install_options="${2:-""}"
-  make -j 4 ${extra_make_options}
-  make install ${extra_install_options}
+  nice make -j ${CPU_NUM} ${extra_make_options}
+  nice make install ${extra_install_options}
 }
 
 do_cmake () {
@@ -152,5 +152,3 @@ do_cmake () {
   local build_from_dir="${2:-"."}"
   nice -n 5 cmake -G"Unix Makefiles" "${build_from_dir}" -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_TOOLCHAIN_FILE="${WORKDIR}/toolchains.cmake" $extra_args
 }
-
-

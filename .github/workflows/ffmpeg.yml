@@ -66,14 +66,14 @@ jobs:
         if: matrix.flavor == 'linux'
         run: |
           echo "target=ffmpeg" >> $GITHUB_ENV
-          echo "image_name=allan-nava/ffmpeg" >> $GITHUB_ENV
+          echo "image_name=ghcr.io/allan-nava/ffmpeg" >> $GITHUB_ENV
           echo "image_tag=${{ matrix.ffmpeg }}" >> $GITHUB_ENV
       #
       - name: Set build target (qsv-linux)
         if: matrix.flavor == 'qsv-linux'
         run: |
           echo "target=ffmpeg-qsv" >> $GITHUB_ENV
-          echo "image_name=allan-nava/ffmpeg" >> $GITHUB_ENV
+          echo "image_name=ghcr.io/allan-nava/ffmpeg" >> $GITHUB_ENV
           echo "image_tag=${{ matrix.ffmpeg }}-qsv" >> $GITHUB_ENV
       #
       - name: Set build target (windows)
@@ -95,11 +95,11 @@ jobs:
           platforms: linux/amd64
           target: ${{ env.target }}
           push: true
-          #cache-from: type=local,src=/tmp/.buildx-cache
-          #cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       #
-      #- name: Move cache # https://github.com/docker/build-push-action/issues/252
-      #  run: |
-      #    rm -rf /tmp/.buildx-cache
-      #    mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      - name: Move cache # https://github.com/docker/build-push-action/issues/252
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 ##

@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         ffmpeg: ["5.1.2"]
-        flavor: [linux, qsv-linux]
+        flavor: [linux]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -125,8 +125,10 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          tags: |
-            ${{ env.image_name }}:${{ env.image_tag }}
+          #tags: |
+          #  ${{ env.image_name }}:${{ env.image_tag }}
+          
+          tags: ${{ steps.prep.outputs.tags }}
           build-args: |
             FFMPEG_VERSION=${{ matrix.ffmpeg }}
           platforms: linux/amd64

@@ -25,7 +25,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+      # Repo metadata
+      - name: Repo metadata
+        id: repo
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const repo = await github.repos.get(context.repo)
+      #
       # Prepare variables
       - name: Prepare
         id: prep

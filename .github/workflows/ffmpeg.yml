@@ -126,10 +126,9 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          #tags: |
-          #  ${{ env.image_name }}:${{ env.image_tag }}
-          
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: |
+            ${{ env.image_name }}:${{ env.image_tag }}
+          #tags: ${{ steps.prep.outputs.tags }}
           build-args: |
             FFMPEG_VERSION=${{ matrix.ffmpeg }}
           platforms: linux/amd64

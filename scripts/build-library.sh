@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -eux
 source ./base.sh
 #
 # Build Tools

@@ -53,12 +53,12 @@ export LDFLAGS="-L${PREFIX}/lib ${LDFLAGS:-""}"
 export CFLAGS="-I${PREFIX}/include ${CFLAGS:-""}"
 export CXXFLAGS="${CFLAGS}"
 export PATH="${PREFIX}/bin:$PATH"
-
+#
 mkdir -p ${WORKDIR} ${PREFIX}/{bin,share,lib/pkgconfig,include}
-
+#
 FFMPEG_CONFIGURE_OPTIONS=()
 FFMPEG_EXTRA_LIBS=()
-
+#
 case "$(uname)" in
 Darwin)
   export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
@@ -68,12 +68,9 @@ Linux)
   CPU_NUM=$(nproc)
   ;;
 esac
-
-
 #
 # Helper Function
 #
-
 download_and_unpack_file () {
   cd ${WORKDIR}
   local url="$1"
@@ -88,7 +85,7 @@ download_and_unpack_file () {
   rm -rf "${output_dir}"
   mkdir -p "${output_dir}"
   tar -xf "${output_name}" --strip-components 1 -C "${output_dir}"
-  echo "done."
+  echo "done. ${url}"
   cd ${output_dir}
 }
 

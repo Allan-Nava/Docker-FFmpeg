@@ -4,7 +4,7 @@ source ./base.sh
 
 # Build ffmpeg
 FFMPEG_VERSION=5.1.2
-curl -LO  "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz"
+#curl -LO  "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz"
 #
 download_and_unpack_file "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.xz"
 case ${TARGET_OS} in

@@ -1,8 +1,8 @@
 # syntax = docker/dockerfile:1.3-labs
 ARG FFMPEG_VERSION="5.1.2"
 #
-FROM allan-nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
-FROM allan-nava/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
+FROM ghcr.io/allan-nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
+FROM ghcr.io/allan-nava/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
 FROM ghcr.io/allan-nava/ffmpeg-windows:${FFMPEG_VERSION} AS ffmpeg-image-windows
 #
 # build env image

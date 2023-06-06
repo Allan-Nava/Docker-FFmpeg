@@ -62,13 +62,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-${{ github.workflow }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-${{ github.workflow }}-
+      #- name: Cache Docker layers
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: /tmp/.buildx-cache
+      #    key: ${{ runner.os }}-${{ github.workflow }}-${{ github.sha }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-${{ github.workflow }}-
       #
       #- name: Save Cache Docker layers
       #  id: cache-docker-layers-save

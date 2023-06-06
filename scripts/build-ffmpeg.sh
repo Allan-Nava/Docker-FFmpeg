@@ -25,11 +25,12 @@ download_and_unpack_file "https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.t
 case ${TARGET_OS} in
 Linux | linux)
   ./configure `cat ${PREFIX}/ffmpeg_configure_options` \
-              --disable-autodetect \
               --disable-debug \
-              --disable-doc \
               --enable-gpl \
               --enable-version3 \
+              --enable-static \
+              --disable-indev=sndio \
+              --disable-outdev=sndio \
               --extra-libs="`cat ${PREFIX}/ffmpeg_extra_libs`" \
               --pkg-config-flags="--static" \
               --prefix=${PREFIX} > ${PREFIX}/configure_options

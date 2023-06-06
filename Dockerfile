@@ -2,8 +2,8 @@
 ARG FFMPEG_VERSION="5.1.2"
 #
 FROM ghcr.io/allan-nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
-FROM ghcr.io/allan-nava/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
-FROM ghcr.io/allan-nava/ffmpeg-windows:${FFMPEG_VERSION} AS ffmpeg-image-windows
+FROM ghcr.io/akashisn/ffmpeg:${FFMPEG_VERSION}-qsv AS ffmpeg-image-qsv
+FROM ghcr.io/akashisn/ffmpeg-windows:${FFMPEG_VERSION} AS ffmpeg-image-windows
 #
 # build env image
 #
@@ -79,7 +79,7 @@ FROM ffmpeg-build-env AS ffmpeg-linux-build-base
 ENV TARGET_OS="Linux"
 
 # Copy ffmpeg-library image
-COPY --from=ghcr.io/allan-nava/ffmpeg-library-build:linux / /
+COPY --from=ghcr.io/akashisn/ffmpeg-library-build:linux / /
 
 
 #

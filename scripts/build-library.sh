@@ -1,7 +1,6 @@
 #!/bin/bash
-
+set -ex
 source ./base.sh
-
 #
 # Build Tools
 #

@@ -94,7 +94,7 @@ jobs:
           echo "target_os=Windows" >> $GITHUB_ENV
       #
       - name: Build ffmpeg-build-base
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           context: ./
           file: ./Dockerfile

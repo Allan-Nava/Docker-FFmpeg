@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.3-labs
+# syntax = docker/dockerfile:1.7-labs
 
 ARG TARGET_OS="linux"
 ARG CUDA_SDK_VERSION=11.6.0

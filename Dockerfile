@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.3-labs
+# syntax = docker/dockerfile:1.7-labs
 ARG FFMPEG_VERSION="5.1.2"
 #
 FROM ghcr.io/allan-nava/ffmpeg:${FFMPEG_VERSION} AS ffmpeg-image
